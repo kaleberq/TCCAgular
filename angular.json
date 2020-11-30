@@ -28,7 +28,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/theme.scss",
+              "src/styles.scss",
+              "node_modules/sweetalert2/src/sweetalert2.scss"
             ],
             "scripts": []
           },
@@ -123,6 +125,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "pastelaria"
+    }
+  },
+  "defaultProject": "pastelaria",
+  "cli": {
+    "analytics": "95310255-f4e4-4f99-b502-5af6b3d6c276"
+  }
 }

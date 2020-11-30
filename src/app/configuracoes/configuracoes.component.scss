@@ -1,0 +1,24 @@
+mat-card{
+    height: auto;
+    width:  600px;
+  }
+  .corpoCadastro{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 97vh
+  }
+  ::ng-deep {
+    .mat-form-field .mat-form-field-flex{
+      background-color: white; 
+    }
+  }
+  mat-form-field{
+    width: 100%;
+  }
+  #centralizaItens{
+    text-align: center;
+  }
+  .cursorStyle{
+    cursor: pointer;
+  }

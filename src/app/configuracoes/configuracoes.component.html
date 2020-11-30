@@ -1,0 +1,46 @@
+<div class="corpoCadastro">
+    <mat-card>
+        <mat-card-title>
+            Configurações
+        </mat-card-title>
+        <mat-card-content>
+            <mat-grid-list [cols]="breakpoint" rowHeight="230px" (window:resize)="onResize($event)">
+                <mat-grid-tile>
+                    <form style="margin-right: 10px;">
+                        <mat-form-field>
+                            <input matInput placeholder="Nome" value=""   name="nome" type="text" maxlength="20" >
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput placeholder="Cpf" value=""  name="cpf" [specialCharacters]="[ '-' ]" mask="000000000-00">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput placeholder="Email" value=""  name="email" maxlength="30" >
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput placeholder="Senha"  id="password" name="password" type="password"  showHideInput >
+                        </mat-form-field>
+                    </form>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <form>
+                        <mat-form-field>
+                            <input matInput placeholder="Sobrenome" value=""  name="sobrenome" maxlength="20" >
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Telefone" value=""  name="telefone" [specialCharacters]="[ '(' ,')','-',' ']" mask="(00)0000 0000">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Celular" value=""  name="celular" [specialCharacters]="[ '(' ,')','-',' ']" mask="(00)0-0000 0000">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput showHideInput id="passwordConfirm" type="password" placeholder="Confirmar senha"  name="passwordConfirm" >
+                        </mat-form-field>
+                    </form>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </mat-card-content>
+<!--         <mat-card-footer id="centralizaItens" style="margin-bottom: 0px;">
+            <button mat-raised-button color="primary" [disabled]="!dadosCadastro.primeiro_nome  || !dadosCadastro.cpf || !dadosCadastro.email || !dadosCadastro.senha || !dadosCadastro.passwordConfirm || (!dadosCadastro.telefone && !dadosCadastro.celular)" (click)="validarCadastro()">Cadastrar</button>
+        </mat-card-footer> -->
+    </mat-card>
+</div>
