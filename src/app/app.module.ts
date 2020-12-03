@@ -19,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
 import { ConfiguracoesComponent } from './configuracoes/configuracoes.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { ConfiguracoesComponent } from './configuracoes/configuracoes.component'
     FormsModule,
     MatGridListModule,
     NgxMaskModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    MatExpansionModule
   ],
   providers: [ {
     provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher

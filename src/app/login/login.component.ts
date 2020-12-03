@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
   
   public dadosLogin= {
     email: 'kalebemisael@gmail.com',
-    senha: 'porcoaranha'
+    senha: 'porcoaranha132'
   }
   public url = 'http://localhost:5000/api/v1/user/login';
   constructor(private router: Router, private remote: RemoteService) { 
