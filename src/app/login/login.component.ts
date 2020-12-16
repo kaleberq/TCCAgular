@@ -55,6 +55,7 @@ export class LoginComponent implements OnInit {
           if(res.auth == true){
             localStorage.setItem ('token', res.token);
             localStorage.setItem ('email', this.dadosLogin.email);
+            localStorage.setItem ('tipo', res.tipo);
             this.router.navigate(['/dashboard'])
           }else{
             this.alert(res.message);

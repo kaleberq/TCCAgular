@@ -13,13 +13,18 @@ import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 import { FormsModule } from '@angular/forms';
-import {MatGridListModule} from '@angular/material/grid-list';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { NgxMaskModule, IConfig } from 'ngx-mask'
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
 import { ConfiguracoesComponent } from './configuracoes/configuracoes.component';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
+
+import { CommonModule } from '@angular/common'; 
 
 @NgModule({
   declarations: [
@@ -43,7 +48,10 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatGridListModule,
     NgxMaskModule.forRoot(),
     HttpClientModule,
-    MatExpansionModule
+    MatExpansionModule,
+    CommonModule,
+    MatSelectModule,
+    MatSlideToggleModule
   ],
   providers: [ {
     provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher

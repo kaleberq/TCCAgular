@@ -38,17 +38,59 @@
                     </form>
                 </mat-grid-tile>
             </mat-grid-list>
+            <mat-card-actions id="centralizaItens">
+                <button mat-raised-button color="primary" [disabled]="!dadosCadastro.primeiro_nome  || !dadosCadastro.cpf || !dadosCadastro.email || (!dadosCadastro.telefone && !dadosCadastro.celular)" (click)="EditarCadastro()">Editar</button>
+            </mat-card-actions>
             <mat-expansion-panel (opened)="buscaEndereco()">
                 <mat-expansion-panel-header>
-                  Endereços
+                  Endereço
                 </mat-expansion-panel-header>
                 <ng-template matExpansionPanelContent>
-                  não há endereços disponiveis
+                    <div *ngIf="mensagem && cadastro == 0">
+                        <mat-card class="cardAlert" style="width: auto;">
+                            {{mensagem}}
+                        </mat-card>  
+                        <div style="text-align: center;">
+                            <button mat-raised-button color="primary" (click)="mostraFormCadastro()">Cadastrar endereço novo</button>
+                        </div>
+                    </div>
+                    <div *ngIf="cadastro == 1 || dadosBusca == 1">
+                        <mat-grid-list cols="1" rowHeight="280px" (window:resize)="onResize($event)">
+                            <mat-grid-tile>
+                                <form style="margin-right: 10px;">
+                                    <mat-form-field>
+                                        <input matInput placeholder="Rua" value="" [(ngModel)]="dadosEndereco.rua" name="rua">
+                                    </mat-form-field>
+                                    <mat-form-field>
+                                        <input matInput type="number" placeholder="Número" value="" [(ngModel)]="dadosEndereco.numero" name="numero" maxlength="10">
+                                    </mat-form-field>
+                                    <mat-form-field >
+                                        <mat-label>Complemento</mat-label>
+                                        <mat-select [(value)]="dadosEndereco.complemento">
+                                            <mat-option>Selecione</mat-option>
+                                            <mat-option value="Casa">Casa</mat-option>
+                                            <mat-option value="Apartamento">Apartamento</mat-option>
+                                        </mat-select>  
+                                    </mat-form-field>
+                                    <mat-form-field>
+                                        <input matInput type="number" placeholder="Cep" [(ngModel)]="dadosEndereco.cep" value=""  name="cep" maxlength="45">
+                                    </mat-form-field>
+                                    <mat-form-field>
+                                        <input matInput type="text" placeholder="Cidade" value="" [(ngModel)]="dadosEndereco.cidade" name="cidade">
+                                    </mat-form-field>
+                                </form>
+                            </mat-grid-tile>
+                        </mat-grid-list>
+                        <mat-card-actions id="centralizaItens">
+                            <button *ngIf="cadastro == 1" mat-raised-button color="primary" [disabled]="!dadosEndereco.email  || !dadosEndereco.rua || !dadosEndereco.numero || !dadosEndereco.complemento || !dadosEndereco.cep || !dadosEndereco.cidade" (click)="cadastrar()">Cadastrar</button>
+                            <button *ngIf="dadosBusca == 1" mat-raised-button color="primary" [disabled]="!dadosEndereco.email  || !dadosEndereco.rua || !dadosEndereco.numero || !dadosEndereco.complemento || !dadosEndereco.cep || !dadosEndereco.cidade" (click)="editarEndereco()">Editar</button>
+                        </mat-card-actions>
+                    </div>
                 </ng-template>
               </mat-expansion-panel>
         </mat-card-content>
-        <mat-card-footer id="centralizaItens" style="margin-bottom: 0px;">
+<!--         <mat-card-footer id="centralizaItens" style="margin-bottom: 0px;">
             <button mat-raised-button color="primary" [disabled]="!dadosCadastro.primeiro_nome  || !dadosCadastro.cpf || !dadosCadastro.email || !dadosCadastro.senhaAntiga || !dadosCadastro.senha || (!dadosCadastro.telefone && !dadosCadastro.celular)" (click)="EditarCadastro()">Editar</button>
-        </mat-card-footer> 
+        </mat-card-footer>  -->
     </mat-card>
 </div>

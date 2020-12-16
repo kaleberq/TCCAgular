@@ -14,6 +14,7 @@ export class AppComponent {
   constructor(private router: Router, private remote: RemoteService){
     Usuario.TOKEN = localStorage.getItem('token');
     Usuario.EMAIL = localStorage.getItem('email');
+    Usuario.TIPO = localStorage.getItem('tipo');
   }
   ngOnInit(){
     //this.router.navigate(['/login']);

@@ -1,5 +1,5 @@
 export class Usuario{
-    static TIPO:Number=null; // 1- Cliente 2- Funcionario;
+    static TIPO:any=null; // 0- Cliente 1- Funcionario;
     static NOME:String='';
     static TOKEN:any=null;
     static EMAIL:any=null;

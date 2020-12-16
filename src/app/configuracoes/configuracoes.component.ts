@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RemoteService } from 'src/providers/remote.service';
 import { Usuario } from '../../Classes/Usuario';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { async } from '@angular/core/testing';
 
 @Component({
   selector: 'app-configuracoes',
@@ -21,8 +22,18 @@ export class ConfiguracoesComponent implements OnInit {
     telefone: '',
     tipo:'0'
   };
+  public dadosEndereco = {
+    email: Usuario.EMAIL,
+    rua: '',
+    numero: '',
+    complemento: '',
+    cep: '',
+    cidade:'',
+  };
   public senhaAntiga;
-
+  public mensagem;
+  public cadastro = 0;
+  public dadosBusca = 0;
   constructor(private remote: RemoteService) { 
 
   }
@@ -52,7 +63,20 @@ export class ConfiguracoesComponent implements OnInit {
   }
 
   EditarCadastro(){
-    if(this.dadosCadastro.senhaAntiga !== this.senhaAntiga){
+
+
+
+
+
+    if((!this.dadosCadastro.senhaAntiga && this.dadosCadastro.senha) || (this.dadosCadastro.senhaAntiga && !this.dadosCadastro.senha)){
+      if(!this.dadosCadastro.senhaAntiga){
+        this.alert('Digite sua senha antiga para alterá-la')
+      }else{
+        this.alert('Digite sua senha nova para alterá-la')
+      }
+      return false;
+    }
+    else if((this.dadosCadastro.senhaAntiga !== this.senhaAntiga) && (this.dadosCadastro.senhaAntiga !== '' && this.senhaAntiga !== '')){
       this.alert('Senha antiga incorreta')
       return false;
     }
@@ -60,19 +84,16 @@ export class ConfiguracoesComponent implements OnInit {
       this.alert('As senha nova não pode ser igual a antiga')
       return false;
     }
-    else if(this.dadosCadastro.senhaAntiga.length < 8 || this.dadosCadastro.senha.length < 8){
+    else if((this.dadosCadastro.senhaAntiga.length < 8 || this.dadosCadastro.senha.length < 8) && (this.dadosCadastro.senhaAntiga !== '' && this.senhaAntiga !== '')){
       this.alert('As senha tem que ter 8 caracteres ou mais')
       return false;
-    }else if(this.dadosCadastro.senhaAntiga == this.dadosCadastro.senha){
+    }else if((this.dadosCadastro.senhaAntiga == this.dadosCadastro.senha) && (this.dadosCadastro.senhaAntiga !== '' && this.senhaAntiga !== '')){
       this.alert('As senhas nova não pode ser igual a senha antiga!')
       return false;
-    }else{
+    }else{      
       let url = 'http://localhost:5000/api/v1/user/editarDadosUsuario';
       this.remote.acessor(url, this.dadosCadastro).then((res: any) =>{
-        console.log('resposta pagina', res);
-        
         if(res.auth == true){
-          console.log('resposta', res);
           this.ngOnInit();
           this.senhaAntiga = '';
           this.dadosCadastro.senhaAntiga = '';
@@ -80,7 +101,7 @@ export class ConfiguracoesComponent implements OnInit {
           this.alert('Usuário editado com sucesso!')
           //this.alert(res.message);
         }else{
-          console.log('resposta', res);
+
           //this.alert(res.message);
         }
       });
@@ -98,7 +119,53 @@ export class ConfiguracoesComponent implements OnInit {
     })
   }
   buscaEndereco(){
-    console.log('endereco');
-    
+    let url = 'http://localhost:5000/api/v1/endereco/buscarEndereco';
+    this.remote.acessor(url, this.dadosCadastro).then((res: any) =>{
+      if(res.message){
+        this.mensagem = res.message;
+        this.dadosBusca = 0;
+      }else{
+        this.dadosBusca = 1;
+        this.mensagem = '';
+        let dados = res.resp;
+        this.dadosEndereco.rua = dados.rua;
+        this.dadosEndereco.numero = dados.numero;
+        this.dadosEndereco.complemento = dados.complemento;
+        this.dadosEndereco.cep = dados.cep;
+        this.dadosEndereco.cidade = dados.cidade;
+      }
+    });
+  }
+  mostraFormCadastro(){
+    this.cadastro = 1;
+    this.dadosEndereco.rua = '';
+    this.dadosEndereco.numero = '';
+    this.dadosEndereco.complemento = '';
+    this.dadosEndereco.cep = '';
+    this.dadosEndereco.cidade = '';
+  }
+  cadastrar(){    
+    let url = 'http://localhost:5000/api/v1/endereco/inserirEndereco';
+    this.remote.acessor(url, this.dadosEndereco).then( async (res: any) =>{
+      if(res.auth == true){
+         this.alert(res.message);
+        this.cadastro = 0;
+        this.buscaEndereco();
+      }else{
+        this.alert(res.message);
+      }
+    });
+  }
+  editarEndereco(){    
+    let url = 'http://localhost:5000/api/v1/endereco/editarEndereco';
+    this.remote.acessor(url, this.dadosEndereco).then( async (res: any) =>{
+      if(res.auth == true){
+         this.alert(res.message);
+        this.cadastro = 0;
+        this.buscaEndereco();
+      }else{
+        this.alert(res.message);
+      }
+    });
   }
 }
