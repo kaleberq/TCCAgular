@@ -1,1 +1,27 @@
-<button mat-raised-button color="primary" (click)="pagina()" >Pedidos</button>
+<mat-grid-list [cols]="breakpoint" rowHeight="230px" (window:resize)="onResize($event)" *ngIf="usuario.TIPO == 1">
+    <mat-grid-tile>
+        <mat-card>Pedidos aguardando serem aceitos</mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-card>Listar salgados cadastrados</mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-card>Gerenciar Funcionários</mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-card>Grafico de vendas</mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-card>Grafico de vendas</mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-card>Grafico de vendas</mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-card>Grafico de vendas</mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-card>Grafico de vendas</mat-card>
+    </mat-grid-tile>
+</mat-grid-list>
+<!-- <button mat-raised-button color="primary" (click)="pagina()" >Pedidos</button> -->

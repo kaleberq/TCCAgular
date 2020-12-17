@@ -29,6 +29,7 @@ export class ConfiguracoesComponent implements OnInit {
     complemento: '',
     cep: '',
     cidade:'',
+    bairro: ''
   };
   public senhaAntiga;
   public mensagem;
@@ -167,5 +168,44 @@ export class ConfiguracoesComponent implements OnInit {
         this.alert(res.message);
       }
     });
+  }
+  excluirEndereco(){
+    Swal.fire({
+      /* title: text, */
+      width: 400,
+      text: 'Deseja realmente excluir este endereço?',
+      /* icon: 'warning', */
+      showCancelButton: true,
+      confirmButtonText: 'sim',
+      cancelButtonText: 'não'
+    }).then((result) => {  
+      if (result.value) {  
+        let url = 'http://localhost:5000/api/v1/endereco/excluirEndereco';
+        this.remote.acessor(url, this.dadosEndereco).then( async (res: any) =>{
+          if(res.auth == true){
+            this.alert(res.message);
+            this.cadastro = 0;
+            this.buscaEndereco();
+          }else{
+            this.alert(res.message);
+          }
+        });
+      }  
+    })
+  }
+  buscaCep(){
+    let url = "https://viacep.com.br/ws/"+this.dadosEndereco.cep+"/json/";
+    this.remote.buscaCep(url).then( async (res: any) =>{
+      if(res){
+        this.dadosEndereco.rua = res.logradouro;
+        this.dadosEndereco.cidade = res.localidade;
+        this.dadosEndereco.bairro = res.bairro;
+      }else{
+        this.dadosEndereco.rua = '';
+        this.dadosEndereco.cidade = '';
+        this.dadosEndereco.bairro = '';
+        this.alert('CEP invalido!');
+      }
+    })
   }
 }

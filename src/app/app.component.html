@@ -1,22 +1,14 @@
 
 <div class="toolbar" role="banner" style="position: inherit;">
-  <img
-    width="200px"
-    alt="Angular Logo"
-    src="../assets/logo.png"
-  />
-  <!-- data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg== -->
-<!--   <span>Salgados Nunes</span> -->
+  <img width="200px" alt="Angular Logo" src="../assets/logo.png" />
     <div class="spacer"></div>
-    <button mat-raised-button color="primary" class="buttonMenu" (click)="configuracoes()" *ngIf="usuario.TOKEN && usuario.TIPO == 0">Configurações</button>
-    <button mat-raised-button color="primary" class="buttonMenu" (click)="sair()" *ngIf="usuario.TOKEN">Sair</button>
-    <!--<button mat-raised-button color="primary" class="buttonMenu" (click)="paginaCadastro()">Cadastrar</button> --> 
+    <button mat-button [matMenuTriggerFor]="menu" *ngIf="usuario.TOKEN">
+      <mat-icon aria-hidden="false" aria-label="Example home icon">settings</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="configuracoes()" *ngIf="usuario.TIPO == 0">Configurações</button>
+      <button mat-menu-item (click)="sair()">Sair</button>
+    </mat-menu>
 </div>
-
-<!-- <div class="content" role="main">
-
-
-
-</div> -->
 
 <router-outlet></router-outlet>

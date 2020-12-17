@@ -51,15 +51,30 @@
                             {{mensagem}}
                         </mat-card>  
                         <div style="text-align: center;">
-                            <button mat-raised-button color="primary" (click)="mostraFormCadastro()">Cadastrar endereço novo</button>
+                            <button mat-raised-button color="primary" (click)="mostraFormCadastro()">Cadastrar novo endereço</button>
                         </div>
                     </div>
                     <div *ngIf="cadastro == 1 || dadosBusca == 1">
-                        <mat-grid-list cols="1" rowHeight="280px" (window:resize)="onResize($event)">
+                        <div style="text-align: right; cursor: pointer;" *ngIf="dadosBusca == 1" title="excluir endereço">
+                            <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="excluirEndereco()">delete_forever</mat-icon>
+                        </div>
+                        <mat-grid-list cols="1" rowHeight="350px" (window:resize)="onResize($event)">
                             <mat-grid-tile>
                                 <form style="margin-right: 10px;">
                                     <mat-form-field>
-                                        <input matInput placeholder="Rua" value="" [(ngModel)]="dadosEndereco.rua" name="rua">
+                                        <input matInput placeholder="Cep" [(ngModel)]="dadosEndereco.cep" value=""  name="cep" mask="00000000" (blur)="buscaCep()">
+<!--                                         <button mat-button matSuffix mat-icon-button title="Buscar Cep" (click)="buscaCep()">
+                                            <mat-icon>search</mat-icon>
+                                        </button> -->
+                                    </mat-form-field>
+                                    <mat-form-field>
+                                        <input matInput type="text" placeholder="Cidade" value="" [(ngModel)]="dadosEndereco.cidade" name="cidade" [disabled]="true">
+                                    </mat-form-field>
+                                    <mat-form-field>
+                                        <input matInput placeholder="Rua" value="" [(ngModel)]="dadosEndereco.rua" name="rua" [disabled]="true">
+                                    </mat-form-field>
+                                    <mat-form-field>
+                                        <input matInput placeholder="Bairro" value="" [(ngModel)]="dadosEndereco.bairro" name="bairro" [disabled]="true">
                                     </mat-form-field>
                                     <mat-form-field>
                                         <input matInput type="number" placeholder="Número" value="" [(ngModel)]="dadosEndereco.numero" name="numero" maxlength="10">
@@ -71,12 +86,6 @@
                                             <mat-option value="Casa">Casa</mat-option>
                                             <mat-option value="Apartamento">Apartamento</mat-option>
                                         </mat-select>  
-                                    </mat-form-field>
-                                    <mat-form-field>
-                                        <input matInput type="number" placeholder="Cep" [(ngModel)]="dadosEndereco.cep" value=""  name="cep" maxlength="45">
-                                    </mat-form-field>
-                                    <mat-form-field>
-                                        <input matInput type="text" placeholder="Cidade" value="" [(ngModel)]="dadosEndereco.cidade" name="cidade">
                                     </mat-form-field>
                                 </form>
                             </mat-grid-tile>

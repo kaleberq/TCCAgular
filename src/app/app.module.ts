@@ -22,7 +22,7 @@ import { ConfiguracoesComponent } from './configuracoes/configuracoes.component'
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-
+import { MatMenuModule } from '@angular/material/menu';
 
 import { CommonModule } from '@angular/common'; 
 
@@ -51,7 +51,8 @@ import { CommonModule } from '@angular/common';
     MatExpansionModule,
     CommonModule,
     MatSelectModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatMenuModule
   ],
   providers: [ {
     provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher

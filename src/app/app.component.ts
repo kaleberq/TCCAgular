@@ -9,8 +9,10 @@ import { RemoteService } from 'src/providers/remote.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'pastelaria';
-  usuario = Usuario;
+  public title = 'pastelaria';
+  public usuario = Usuario;
+  public menu;
+
   constructor(private router: Router, private remote: RemoteService){
     Usuario.TOKEN = localStorage.getItem('token');
     Usuario.EMAIL = localStorage.getItem('email');

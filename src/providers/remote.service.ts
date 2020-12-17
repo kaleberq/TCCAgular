@@ -56,4 +56,12 @@ export class RemoteService {
      }); 
      return resposta;
   }
+  async buscaCep(url){
+     let resposta: any;
+     await this.httpClient.get(url).toPromise().then((resp) => {    
+      resposta = resp;
+     }).catch((err)=>{
+     }); 
+     return resposta;
+  }
 }

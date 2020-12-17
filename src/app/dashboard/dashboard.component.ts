@@ -7,6 +7,8 @@ import { Usuario } from '../../Classes/Usuario';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+  public usuario = Usuario;
+  breakpoint: number;
 
   constructor(private router: Router) { 
     Usuario.TOKEN = localStorage.getItem('token');
@@ -15,9 +17,12 @@ export class DashboardComponent implements OnInit {
     console.log('usuario tipo', Usuario.TIPO);
     
   }
-
-  ngOnInit(): void {
-
+  ngOnInit() {
+    this.breakpoint = (window.innerWidth <= 600) ? 1 : 4;
+  }
+  
+  onResize(event) {
+    this.breakpoint = (event.target.innerWidth <= 600) ? 1 : 4;
   }
   ngOnDestroy() {
 
