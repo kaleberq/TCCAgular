@@ -20,9 +20,17 @@
             <div id="centralizaItens">
                 <label class="cursorStyle" (click)="routeCreateUser()">Criar nova conta</label>
             </div>
+            <div id="centralizaItens" style="margin-top: 5px;">
+                <label class="cursorStyle" (click)="esqueceuSenha()">Esqueci a senha</label>
+            </div>
         </mat-card-content>
-        <mat-card-footer id="centralizaItens">
-            <button mat-raised-button color="primary" (click)="validarLogin()" [disabled]="!dadosLogin.email || !dadosLogin.senha">Entrar</button>
+        <mat-card-footer>
+            <div id="centralizaItens">
+                <button mat-raised-button color="primary" (click)="validarLogin()" [disabled]="!dadosLogin.email || !dadosLogin.senha">Entrar</button>
+            </div>
+            <div class="googleButton" (click)="loginGoogle()">
+                <img width="40px" alt="Angular Logo" src="../../assets/googleIcon.png" />
+            </div>
         </mat-card-footer>
     </mat-card>
 </div>

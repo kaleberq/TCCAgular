@@ -1,5 +1,5 @@
 mat-card{
-  height: 220px;
+  height: 275px;
   width:  300px;
 }
 .corpoLogin{
@@ -20,5 +20,10 @@ mat-form-field{
   text-align: center;
 }
 .cursorStyle{
+  cursor: pointer;
+}
+.googleButton{
+  text-align: right; 
+  padding-right: 10px; 
   cursor: pointer;
 }

@@ -64,4 +64,12 @@ export class RemoteService {
      }); 
      return resposta;
   }
+  async loginAuth(url){
+    let resposta: any;
+    await this.httpClient.get(url).toPromise().then((resp) => {    
+     resposta = resp;
+    }).catch((err)=>{
+    }); 
+    return resposta;
+ }
 }

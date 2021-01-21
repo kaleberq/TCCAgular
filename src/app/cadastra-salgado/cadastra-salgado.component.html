@@ -1,0 +1,32 @@
+<div class="corpoCadastro">
+    <mat-card>
+        <mat-card-title>
+            Cadastro salgado
+        </mat-card-title>
+        <mat-card-content>
+            <mat-grid-list [cols]="breakpoint" rowHeight="230px" (window:resize)="onResize($event)">
+                <mat-grid-tile>
+                    <form style="margin-right: 10px;">
+                        <mat-form-field>
+                            <input matInput placeholder="Nome" value=""  name="nome" type="text" maxlength="20" >
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput placeholder="Cpf" value=""  name="cpf" [specialCharacters]="[ '-' ]" mask="000000000-00">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput placeholder="Email" value="" name="email" maxlength="30" >
+                        </mat-form-field>
+                    </form>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <form>
+                        
+                    </form>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </mat-card-content>
+        <mat-card-footer id="centralizaItens" style="margin-bottom: 0px;">
+            <button mat-raised-button color="primary" (click)="cadastrar()">Cadastrar</button>
+        </mat-card-footer>
+    </mat-card>
+</div>

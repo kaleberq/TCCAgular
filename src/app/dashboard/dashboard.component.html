@@ -1,26 +1,37 @@
 <mat-grid-list [cols]="breakpoint" rowHeight="230px" (window:resize)="onResize($event)" *ngIf="usuario.TIPO == 1">
-    <mat-grid-tile>
+    <mat-grid-tile class="cursorStyle">
         <mat-card>Pedidos aguardando serem aceitos</mat-card>
     </mat-grid-tile>
-    <mat-grid-tile>
+    <mat-grid-tile class="cursorStyle">
         <mat-card>Listar salgados cadastrados</mat-card>
     </mat-grid-tile>
-    <mat-grid-tile>
+    <mat-grid-tile class="cursorStyle" (click)="pagina('cadastra-salgado')">
+        <mat-card  class="center">
+            <mat-icon aria-hidden="false" class="iconeCard">
+                playlist_add
+            </mat-icon>
+            <br>
+            <label>
+                Cadastrar Salgados
+            </label>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile class="cursorStyle">
         <mat-card>Gerenciar Funcionários</mat-card>
     </mat-grid-tile>
-    <mat-grid-tile>
+    <mat-grid-tile class="cursorStyle">
         <mat-card>Grafico de vendas</mat-card>
     </mat-grid-tile>
-    <mat-grid-tile>
+    <mat-grid-tile class="cursorStyle">
         <mat-card>Grafico de vendas</mat-card>
     </mat-grid-tile>
-    <mat-grid-tile>
+    <mat-grid-tile class="cursorStyle">
         <mat-card>Grafico de vendas</mat-card>
     </mat-grid-tile>
-    <mat-grid-tile>
+    <mat-grid-tile class="cursorStyle">
         <mat-card>Grafico de vendas</mat-card>
     </mat-grid-tile>
-    <mat-grid-tile>
+    <mat-grid-tile class="cursorStyle">
         <mat-card>Grafico de vendas</mat-card>
     </mat-grid-tile>
 </mat-grid-list>

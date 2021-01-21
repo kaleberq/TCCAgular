@@ -24,7 +24,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatMenuModule } from '@angular/material/menu';
 
-import { CommonModule } from '@angular/common'; 
+import { CommonModule } from '@angular/common';
+import { CadastraSalgadoComponent } from './cadastra-salgado/cadastra-salgado.component'; 
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { CommonModule } from '@angular/common';
     CadastroComponent,
     DashboardComponent,
     PedidosComponent,
-    ConfiguracoesComponent
+    ConfiguracoesComponent,
+    CadastraSalgadoComponent
   ],
   imports: [
     BrowserModule,
