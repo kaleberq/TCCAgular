@@ -4,6 +4,7 @@ import { CadastraSalgadoComponent } from './cadastra-salgado/cadastra-salgado.co
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { ConfiguracoesComponent } from './configuracoes/configuracoes.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ListarSalgadoComponent } from './listar-salgado/listar-salgado.component';
 import { LoginComponent } from './login/login.component'
 import { PedidosComponent } from './pedidos/pedidos.component';
 
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path: 'cadastra-salgado',
     component: CadastraSalgadoComponent
+  },
+  {
+    path: 'listar-salgado',
+    component: ListarSalgadoComponent
   },
 ];
 

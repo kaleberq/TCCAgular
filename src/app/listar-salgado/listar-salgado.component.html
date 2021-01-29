@@ -1,0 +1,62 @@
+
+<div class="corpoListaSalgados">
+    <mat-card>
+        <mat-card-title>
+            Salgado Cadastrados
+        </mat-card-title>
+        <mat-card-content>
+            <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="dataSource">
+                  <ng-container matColumnDef="Nome">
+                    <th mat-header-cell *matHeaderCellDef> Nome </th>
+                    <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="tamanho">
+                    <th mat-header-cell *matHeaderCellDef> Tamanho </th>
+                    <td mat-cell *matCellDef="let element"> 
+                      <div *ngIf="element.tamanho == 1">
+                        pequeno
+                      </div>
+                      <div *ngIf="element.tamanho == 2">
+                        médio
+                      </div>
+                      <div *ngIf="element.tamanho == 3">
+                        grande
+                      </div>
+                    </td>
+                  </ng-container>
+                  <ng-container matColumnDef="tipo">
+                    <th mat-header-cell *matHeaderCellDef> Tipo </th>
+                    <td mat-cell *matCellDef="let element">
+                      <div *ngIf="element.tipo == 1">
+                        frito
+                      </div>
+                      <div *ngIf="element.tipo == 2">
+                        assado
+                      </div>
+                    </td>
+                  </ng-container>
+                  <ng-container matColumnDef="preco">
+                    <th mat-header-cell *matHeaderCellDef> Preço </th>
+                    <td mat-cell *matCellDef="let element"> {{element.preco}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="editar">
+                    <th mat-header-cell *matHeaderCellDef> Editar </th>
+                    <td mat-cell *matCellDef="let element"> Icone editar </td>
+                  </ng-container>
+                  <ng-container matColumnDef="excluir">
+                    <th mat-header-cell *matHeaderCellDef> Excluir </th>
+                    <td mat-cell *matCellDef="let element"> Icone Excluir </td>
+                  </ng-container>
+
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+                <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+              </div>
+        </mat-card-content>
+        <mat-card-footer id="centralizaItens" style="margin-bottom: 0px;">
+
+        </mat-card-footer>
+    </mat-card>
+</div>

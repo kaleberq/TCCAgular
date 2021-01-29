@@ -26,6 +26,11 @@ import { MatMenuModule } from '@angular/material/menu';
 
 import { CommonModule } from '@angular/common';
 import { CadastraSalgadoComponent } from './cadastra-salgado/cadastra-salgado.component'; 
+import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+import { GoogleLoginProvider } from 'angularx-social-login';
+import { ListarSalgadoComponent } from './listar-salgado/listar-salgado.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -35,7 +40,8 @@ import { CadastraSalgadoComponent } from './cadastra-salgado/cadastra-salgado.co
     DashboardComponent,
     PedidosComponent,
     ConfiguracoesComponent,
-    CadastraSalgadoComponent
+    CadastraSalgadoComponent,
+    ListarSalgadoComponent
   ],
   imports: [
     BrowserModule,
@@ -54,11 +60,31 @@ import { CadastraSalgadoComponent } from './cadastra-salgado/cadastra-salgado.co
     CommonModule,
     MatSelectModule,
     MatSlideToggleModule,
-    MatMenuModule
+    MatMenuModule,
+    SocialLoginModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
-  providers: [ {
-    provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher
-  } ],
+  providers: [ 
+    {
+      provide: ErrorStateMatcher,
+      useClass: ShowOnDirtyErrorStateMatcher,
+    },
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '1098782377685-3k0h8i8n34pct3hpf11ecb6i309a77q8.apps.googleusercontent.com'
+            )
+          }
+        ]
+      } as SocialAuthServiceConfig,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Usuario } from '../Classes/Usuario';
 import { RemoteService } from 'src/providers/remote.service';
+import { SocialAuthService } from 'angularx-social-login';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,8 @@ export class AppComponent {
   public usuario = Usuario;
   public menu;
 
-  constructor(private router: Router, private remote: RemoteService){
+  constructor(private router: Router, private remote: RemoteService,
+    private authService: SocialAuthService){
     Usuario.TOKEN = localStorage.getItem('token');
     Usuario.EMAIL = localStorage.getItem('email');
     Usuario.TIPO = localStorage.getItem('tipo');
@@ -34,6 +36,7 @@ export class AppComponent {
         Usuario.EMAIL = ''
         localStorage.clear();
         this.router.navigate(['']);
+        this.signOut();
       }
       console.log('resposta',res);
     });
@@ -45,5 +48,8 @@ export class AppComponent {
   }
   paginaCadastro(){
     this.router.navigate(['/cadastro']);
+  }
+  signOut(): void {
+    this.authService.signOut();
   }
 }

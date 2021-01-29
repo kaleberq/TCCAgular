@@ -2,8 +2,16 @@
     <mat-grid-tile class="cursorStyle">
         <mat-card>Pedidos aguardando serem aceitos</mat-card>
     </mat-grid-tile>
-    <mat-grid-tile class="cursorStyle">
-        <mat-card>Listar salgados cadastrados</mat-card>
+    <mat-grid-tile class="cursorStyle" (click)="pagina('listar-salgado')">
+        <mat-card class="center">
+            <mat-icon aria-hidden="false" class="iconeCard">
+                list
+            </mat-icon>
+            <br>
+            <label>
+                Listar salgados cadastrados
+            </label>
+        </mat-card>
     </mat-grid-tile>
     <mat-grid-tile class="cursorStyle" (click)="pagina('cadastra-salgado')">
         <mat-card  class="center">
