@@ -14,8 +14,8 @@ import { GoogleLoginProvider } from "angularx-social-login";
 export class LoginComponent implements OnInit {
   
   public dadosLogin= {
-    email: 'kalebemisael@gmail.com',
-    senha: 'porcoaranha132'
+    email: 'mari@gmail.com',
+    senha: 'porcoaranha'
   }
 
   public url = 'http://localhost:5000/api/v1/user/login';

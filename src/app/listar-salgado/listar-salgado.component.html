@@ -4,14 +4,21 @@
         <mat-card-title>
             Salgado Cadastrados
         </mat-card-title>
-        <mat-card-content>
+        <mat-card-subtitle class="cardAlert" *ngIf="message">
+          {{message}}
+        </mat-card-subtitle>
+        <mat-card-content *ngIf="!message">
             <div class="mat-elevation-z8">
                 <table mat-table [dataSource]="dataSource">
                   <ng-container matColumnDef="Nome">
                     <th mat-header-cell *matHeaderCellDef> Nome </th>
                     <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
                   </ng-container>
-                  <ng-container matColumnDef="tamanho">
+                  <ng-container matColumnDef="Sabor">
+                    <th mat-header-cell *matHeaderCellDef> Sabor </th>
+                    <td mat-cell *matCellDef="let element"> {{element.sabor}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="Tamanho">
                     <th mat-header-cell *matHeaderCellDef> Tamanho </th>
                     <td mat-cell *matCellDef="let element"> 
                       <div *ngIf="element.tamanho == 1">
@@ -25,7 +32,7 @@
                       </div>
                     </td>
                   </ng-container>
-                  <ng-container matColumnDef="tipo">
+                  <ng-container matColumnDef="Tipo">
                     <th mat-header-cell *matHeaderCellDef> Tipo </th>
                     <td mat-cell *matCellDef="let element">
                       <div *ngIf="element.tipo == 1">
@@ -36,17 +43,36 @@
                       </div>
                     </td>
                   </ng-container>
-                  <ng-container matColumnDef="preco">
+                  <ng-container matColumnDef="Preço">
                     <th mat-header-cell *matHeaderCellDef> Preço </th>
                     <td mat-cell *matCellDef="let element"> {{element.preco}} </td>
                   </ng-container>
-                  <ng-container matColumnDef="editar">
-                    <th mat-header-cell *matHeaderCellDef> Editar </th>
-                    <td mat-cell *matCellDef="let element"> Icone editar </td>
+                  <ng-container matColumnDef="Disponibilidade">
+                    <th mat-header-cell *matHeaderCellDef> Disponibilidade </th>
+                    <td mat-cell *matCellDef="let element">
+                      <div *ngIf="element.disponibilidade == 0">
+                        Indisponível
+                      </div>
+                      <div *ngIf="element.disponibilidade == 1">
+                        Disponivel
+                      </div>
+                    </td>
                   </ng-container>
-                  <ng-container matColumnDef="excluir">
+                  <ng-container matColumnDef="Editar">
+                    <th mat-header-cell *matHeaderCellDef> Editar </th>
+                    <td mat-cell *matCellDef="let element" (click)="abrirFormEditarSalgado(element.id)">
+                      <mat-icon aria-hidden="false" class="iconeCard">
+                        mode_edit
+                      </mat-icon>
+                    </td>
+                  </ng-container>
+                  <ng-container matColumnDef="Excluir">
                     <th mat-header-cell *matHeaderCellDef> Excluir </th>
-                    <td mat-cell *matCellDef="let element"> Icone Excluir </td>
+                    <td mat-cell *matCellDef="let element" (click)="excluirSalgado(element.id)">             
+                      <mat-icon aria-hidden="false" class="iconeCard">
+                        delete
+                      </mat-icon>
+                    </td>
                   </ng-container>
 
                   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -55,8 +81,57 @@
                 <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
               </div>
         </mat-card-content>
-        <mat-card-footer id="centralizaItens" style="margin-bottom: 0px;">
-
+        <mat-card-footer id="centralizaItens" style="margin-bottom: 0px; padding: 15px;" *ngIf="abrirForm == 1">
+          <mat-card style="width: auto;">
+            <mat-card-title>
+                Editar salgado
+            </mat-card-title>
+            <mat-card-content>
+                <mat-grid-list [cols]="breakpoint" rowHeight="350px" >
+                    <mat-grid-tile>
+                        <form style="margin-right: 10px;">
+                            <mat-form-field>
+                                <input matInput [(ngModel)]="dadosSalgadoform.nome" placeholder="Nome" value=""  name="nome" type="text" maxlength="20">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input matInput [(ngModel)]="dadosSalgadoform.sabor" placeholder="Sabor" value=""  name="sabor">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input matInput [(ngModel)]="dadosSalgadoform.preco" type="number"  placeholder="Preço" value=""  name="preco">
+                            </mat-form-field>
+                            <mat-form-field >
+                              <mat-label>Tamanho</mat-label>
+                                <mat-select [(value)]="dadosSalgadoform.tamanho">
+                                    <mat-option>Selecione</mat-option>
+                                    <mat-option value="1">Pequeno</mat-option>
+                                    <mat-option value="2">Médio</mat-option>
+                                    <mat-option value="3">Grande</mat-option>
+                                </mat-select> 
+                            </mat-form-field>
+                            <mat-form-field >
+                                <mat-label>Tipo</mat-label>
+                                <mat-select [(value)]="dadosSalgadoform.tipo">
+                                    <mat-option>Selecione</mat-option>
+                                    <mat-option value="1">Frito</mat-option>
+                                    <mat-option value="2">Assado</mat-option>
+                                </mat-select>  
+                            </mat-form-field>
+                            <mat-form-field >
+                              <mat-label>Disponibilidade</mat-label>
+                              <mat-select [(value)]="dadosSalgadoform.disponibilidade">
+                                  <mat-option>Selecione</mat-option>
+                                  <mat-option value="0">Indisponível</mat-option>
+                                  <mat-option value="1">Disponivel</mat-option>
+                              </mat-select>  
+                          </mat-form-field>
+                        </form>
+                    </mat-grid-tile>
+                </mat-grid-list>
+            </mat-card-content>
+            <mat-card-footer id="centralizaItens" style="margin-bottom: 0px;">
+                <button mat-raised-button color="primary" [disabled]="!dadosSalgadoform.nome  || !dadosSalgadoform.sabor || !dadosSalgadoform.tamanho || !dadosSalgadoform.tipo || !dadosSalgadoform.preco" (click)="editarSalgado()">Editar</button>
+            </mat-card-footer>
+          </mat-card>
         </mat-card-footer>
     </mat-card>
 </div>

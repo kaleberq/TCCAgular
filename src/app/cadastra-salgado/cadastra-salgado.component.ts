@@ -15,7 +15,8 @@ export class CadastraSalgadoComponent implements OnInit {
     sabor: '',
     tamanho: '',
     tipo: '',
-    preco: ''
+    preco: '',
+    disponibilidade: ''
   }
 
   constructor(private remote: RemoteService,) { }
@@ -47,6 +48,7 @@ export class CadastraSalgadoComponent implements OnInit {
         this.dadosSalgado.tamanho = '';
         this.dadosSalgado.tipo = '';
         this.dadosSalgado.preco = '';
+        this.dadosSalgado.disponibilidade = '';
         this.alert(res.message);
 
       }else{

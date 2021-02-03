@@ -43,4 +43,35 @@
         <mat-card>Grafico de vendas</mat-card>
     </mat-grid-tile>
 </mat-grid-list>
+
+<mat-grid-list [cols]="breakpoint" rowHeight="230px" (window:resize)="onResize($event)" *ngIf="usuario.TIPO == 0">
+    <mat-grid-tile class="cursorStyle">
+        <mat-card class="center">
+            <mat-icon aria-hidden="false" class="iconeCard">
+                list
+            </mat-icon>
+            <br>
+            <label>
+                Salgados
+            </label>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile class="cursorStyle">
+        <mat-card  class="center">
+            <mat-icon aria-hidden="false" class="iconeCard">
+                playlist_add
+            </mat-icon>
+            <br>
+            <label>
+                C
+            </label>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile class="cursorStyle">
+        <mat-card>G</mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile class="cursorStyle">
+        <mat-card>G</mat-card>
+    </mat-grid-tile>
+</mat-grid-list>
 <!-- <button mat-raised-button color="primary" (click)="pagina()" >Pedidos</button> -->
