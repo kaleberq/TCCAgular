@@ -28,8 +28,8 @@
             <div id="centralizaItens">
                 <button mat-raised-button color="primary" (click)="validarLogin()" [disabled]="!dadosLogin.email || !dadosLogin.senha">Entrar</button>
             </div>
-            <div class="googleButton" (click)="signInWithGoogle()">
-                <img width="40px" alt="Angular Logo" src="../../assets/googleIcon.png" />
+            <div class="googleButton">
+                <img (click)="signInWithGoogle()" style="  cursor: pointer;" width="40px" alt="Angular Logo" src="../../assets/googleIcon.png" />
             </div>
         </mat-card-footer>
     </mat-card>

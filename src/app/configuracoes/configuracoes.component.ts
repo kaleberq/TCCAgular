@@ -42,7 +42,7 @@ export class ConfiguracoesComponent implements OnInit {
 
   ngOnInit() {
     this.breakpoint = (window.innerWidth <= 600) ? 1 : 2;
-    let url = 'http://localhost:5000/api/v1/user/buscarDadosUsuario';
+    let url = Usuario.URL+'user/buscarDadosUsuario';
     this.remote.acessor(url, this.dadosCadastro).then((res: any) =>{
       if(res.auth == true){
         let dados = res.resp;
@@ -92,7 +92,7 @@ export class ConfiguracoesComponent implements OnInit {
       this.alert('As senhas nova não pode ser igual a senha antiga!')
       return false;
     }else{      
-      let url = 'http://localhost:5000/api/v1/user/editarDadosUsuario';
+      let url = Usuario.URL+'user/editarDadosUsuario';
       this.remote.acessor(url, this.dadosCadastro).then((res: any) =>{
         if(res.auth == true){
           this.ngOnInit();
@@ -120,7 +120,7 @@ export class ConfiguracoesComponent implements OnInit {
     })
   }
   buscaEndereco(){
-    let url = 'http://localhost:5000/api/v1/endereco/buscarEndereco';
+    let url = Usuario.URL+'endereco/buscarEndereco';
     this.remote.acessor(url, this.dadosCadastro).then((res: any) =>{
       if(res.message){
         this.mensagem = res.message;
@@ -146,7 +146,7 @@ export class ConfiguracoesComponent implements OnInit {
     this.dadosEndereco.cidade = '';
   }
   cadastrar(){    
-    let url = 'http://localhost:5000/api/v1/endereco/inserirEndereco';
+    let url = Usuario.URL+'endereco/inserirEndereco';
     this.remote.acessor(url, this.dadosEndereco).then( async (res: any) =>{
       if(res.auth == true){
          this.alert(res.message);
@@ -158,7 +158,7 @@ export class ConfiguracoesComponent implements OnInit {
     });
   }
   editarEndereco(){    
-    let url = 'http://localhost:5000/api/v1/endereco/editarEndereco';
+    let url = Usuario.URL+'endereco/editarEndereco';
     this.remote.acessor(url, this.dadosEndereco).then( async (res: any) =>{
       if(res.auth == true){
          this.alert(res.message);
@@ -180,7 +180,7 @@ export class ConfiguracoesComponent implements OnInit {
       cancelButtonText: 'não'
     }).then((result) => {  
       if (result.value) {  
-        let url = 'http://localhost:5000/api/v1/endereco/excluirEndereco';
+        let url = Usuario.URL+'endereco/excluirEndereco';
         this.remote.acessor(url, this.dadosEndereco).then( async (res: any) =>{
           if(res.auth == true){
             this.alert(res.message);

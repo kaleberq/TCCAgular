@@ -1,0 +1,92 @@
+<div class="corpoPedidosFinalizado">
+    <mat-card>
+        <mat-card-title>
+            Pedidos finalizados
+        </mat-card-title>
+        <mat-accordion>
+            <mat-card *ngIf="alerta == false" class="cardAlert" style="width: auto;">
+               Não há pedidos finalizados
+            </mat-card> 
+            <mat-card-content *ngFor="let pedido of novosPedidos">
+                <mat-card style="width: initial;">
+                    <mat-card-subtitle style="color: black;">
+                        Nome do cliente: {{pedido.primeiro_nome}}
+                    </mat-card-subtitle>
+                    <mat-card-content>
+                        <p *ngIf="pedido.telefone">Telefone fixo: {{pedido.telefone}}</p>
+                        <p *ngIf="pedido.celular">Celular: {{pedido.celular}}</p>
+                        <p>Valor total do pedido: R${{pedido.valorTotal}}</p>
+                        <p>Data da pedido: {{pedido.dataEncomenda}}</p>
+                        <p>Entrega:                   
+                            <label *ngIf="pedido.formaEntrega == 1">
+                                Moto taxi
+                            </label>
+                            <label *ngIf="pedido.formaEntrega == 2">
+                                Retirada no local
+                            </label>
+                        </p>
+                        <p>Pagamento:                   
+                            <label *ngIf="pedido.formaPagamento == 1">
+                                Dinheiro
+                            </label>
+                            <label *ngIf="pedido.formaPagamento == 2">
+                                Cartão
+                            </label>
+                        </p>
+                        <mat-expansion-panel (opened)="buscaListaSalgadosPedido(pedido.idEncomenda)">
+                            <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Lista de salgados
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                Exibe a lista de salgados pedidos pelo cliente
+                            </mat-panel-description>
+                            </mat-expansion-panel-header>
+                            <ng-template matExpansionPanelContent>
+                                <div *ngFor="let salgado of salgados; let last = last">
+                                    <mat-card style="width: initial;">
+                                        <mat-card-title>
+                                            {{salgado.nome}}
+                                        </mat-card-title>
+                                        <mat-card-content>
+                                            <p>Quantidade: {{salgado.quantidade}}</p>
+                                            <p>Sabor: {{salgado.sabor}}</p>
+                                            <p>Tamanho:                   
+                                                <label *ngIf="salgado.tamanho == 1">
+                                                    Pequeno
+                                                </label>
+                                                <label *ngIf="salgado.tamanho == 2">
+                                                    Médio
+                                                </label>
+                                                <label *ngIf="salgado.tamanho == 3">
+                                                    Grande
+                                                </label>
+                                            </p>
+                                            <p>Tipo:                   
+                                                <label *ngIf="salgado.tipo == 1">
+                                                    Frito
+                                                </label>
+                                                <label *ngIf="salgado.tipo == 2">
+                                                    Assado
+                                                </label>
+                                            </p>
+                                        </mat-card-content>
+                                    </mat-card>
+                                    <div *ngIf="!last" style="height: 15px;"></div>
+                                </div>
+                            </ng-template>                    
+                        </mat-expansion-panel>
+                        <mat-card-actions>
+                            <button mat-button (click)="marcarPedidoEntregue(pedido.idEncomenda, 3, pedido.email)">
+                                <mat-icon aria-hidden="false" class="iconeCard">
+                                    delivery_dining
+                                </mat-icon>
+                                Marcar pedido como entregue
+                            </button>
+                        </mat-card-actions>
+                    </mat-card-content>
+                </mat-card>
+            </mat-card-content>
+        </mat-accordion>
+    </mat-card>
+</div>

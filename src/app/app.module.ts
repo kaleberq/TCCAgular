@@ -17,7 +17,6 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { NgxMaskModule, IConfig } from 'ngx-mask'
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { PedidosComponent } from './pedidos/pedidos.component';
 import { ConfiguracoesComponent } from './configuracoes/configuracoes.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSelectModule } from '@angular/material/select';
@@ -31,6 +30,15 @@ import { GoogleLoginProvider } from 'angularx-social-login';
 import { ListarSalgadoComponent } from './listar-salgado/listar-salgado.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { ListaSalgadoClienteComponent } from './lista-salgado-cliente/lista-salgado-cliente.component';
+import { MatListModule } from '@angular/material/list';
+import { MeusPedidosComponent } from './meus-pedidos/meus-pedidos.component';
+import { NovosPedidosComponent } from './novos-pedidos/novos-pedidos.component';
+import { PedidosParaFazerComponent } from './pedidos-para-fazer/pedidos-para-fazer.component';
+import { PedidosFinalizadosComponent } from './pedidos-finalizados/pedidos-finalizados.component';
+import { PedidosAprovadosClienteComponent } from './pedidos-aprovados-cliente/pedidos-aprovados-cliente.component';
+import { PedidosFinalizadosClienteComponent } from './pedidos-finalizados-cliente/pedidos-finalizados-cliente.component';
+import { RelatorioVendasMensalComponent } from './relatorio-vendas-mensal/relatorio-vendas-mensal.component';
 
 @NgModule({
   declarations: [
@@ -38,10 +46,17 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     LoginComponent,
     CadastroComponent,
     DashboardComponent,
-    PedidosComponent,
     ConfiguracoesComponent,
     CadastraSalgadoComponent,
-    ListarSalgadoComponent
+    ListarSalgadoComponent,
+    ListaSalgadoClienteComponent,
+    MeusPedidosComponent,
+    NovosPedidosComponent,
+    PedidosParaFazerComponent,
+    PedidosFinalizadosComponent,
+    PedidosAprovadosClienteComponent,
+    PedidosFinalizadosClienteComponent,
+    RelatorioVendasMensalComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +78,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatMenuModule,
     SocialLoginModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatListModule
   ],
   providers: [ 
     {

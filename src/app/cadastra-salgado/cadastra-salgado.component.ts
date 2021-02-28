@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Usuario } from 'src/Classes/Usuario';
 import { RemoteService } from 'src/providers/remote.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 
@@ -40,7 +41,7 @@ export class CadastraSalgadoComponent implements OnInit {
     })
   }
   cadastrar(){
-    let url = 'http://localhost:5000/api/v1/salgado/inserirSalgado';
+    let url = Usuario.URL+'salgado/inserirSalgado';
     this.remote.acessor(url, this.dadosSalgado).then((res: any) =>{
       if(res.auth == true){
         this.dadosSalgado.nome = '';

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Usuario } from 'src/Classes/Usuario';
 import { RemoteService } from 'src/providers/remote.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 
@@ -22,7 +23,7 @@ export class CadastroComponent implements OnInit {
     tipo:'0'
 
   }
-  public url = 'http://localhost:5000/api/v1/user/cadastroUsuario';
+  public url = Usuario.URL+'user/cadastroUsuario';
   breakpoint: number;
   constructor(private remote: RemoteService, private router: Router) { 
     

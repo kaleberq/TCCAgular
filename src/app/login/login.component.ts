@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
     senha: 'porcoaranha'
   }
 
-  public url = 'http://localhost:5000/api/v1/user/login';
+  public url = Usuario.URL+'user/login';
   constructor(private router: Router, private remote: RemoteService,
     private authService: SocialAuthService) { 
     
@@ -88,26 +88,40 @@ export class LoginComponent implements OnInit {
   }
 
   async signInWithGoogle(){
-    await this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-
+    await this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);;
     this.authService.authState.subscribe( async(user: any) => {
       if(user.authToken){
         let dados= {
-          email: user.email,
+          primeiro_nome: '',
+          sobrenome: '',
+          email: user.email,      
+          telefone: '',      
+          celular: '', 
+          cpf: '',          
+          senha: '',         
+          tipo: ''         
         }
-        await this.remote.insert('http://localhost:5000/api/v1/user/loginGoogle', dados).then(async (res: any) =>{
+        
+        await this.remote.insert(Usuario.URL+'user/loginGoogle', dados).then(async (res: any) =>{
+          
           if(await res.auth == true){
             //chamo o metodo aqui
-            await this.remote.insert(this.url, this.dadosLogin).then(async (res: any) =>{
-              if(await res.auth == true){
+            localStorage.setItem ('token', res.token);
+            localStorage.setItem ('email', res.email);
+            localStorage.setItem ('tipo', res.tipo);
+            this.router.navigate(['/dashboard'])
+            //await this.remote.insert(this.url, this.dadosLogin).then(async (res: any) =>{
+             //console.log('RESS',res);
+              
+              /* if(await res.auth == true){
                 localStorage.setItem ('token', res.token);
                 localStorage.setItem ('email', this.dadosLogin.email);
                 localStorage.setItem ('tipo', res.tipo);
                 this.router.navigate(['/dashboard'])
               }else{
                 this.alert('Erro ao fazer o login', res.message);
-              }
-            });
+              } */
+            //});
           }else if(await res.auth == false){
             console.log(res);
             this.alert('Erro!', res.message);
@@ -133,7 +147,7 @@ export class LoginComponent implements OnInit {
       let dados= {
         email: email,
       }
-      this.remote.insert('http://localhost:5000/api/v1/user/verificaEmail', dados).then((res: any) =>{
+      this.remote.insert(Usuario.URL+'user/verificaEmail', dados).then((res: any) =>{
         if(res.auth == true){
           this.alert('Email envidado', res.message);
         }else{

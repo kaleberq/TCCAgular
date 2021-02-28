@@ -3,7 +3,8 @@ import { RemoteService } from 'src/providers/remote.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 import {MatPaginator} from '@angular/material/paginator';
-import {MatTableDataSource} from '@angular/material/table';
+import { Usuario } from 'src/Classes/Usuario';
+//import {MatTableDataSource} from '@angular/material/table';
 
 
 @Component({
@@ -14,11 +15,12 @@ import {MatTableDataSource} from '@angular/material/table';
 
 export class ListarSalgadoComponent implements OnInit {
 
+  salgados:any;
   breakpoint: number;
-  listaSalgados = [];
+  //listaSalgados = [];
 
-  displayedColumns: string[] = ['Nome', 'Sabor', 'Tamanho', 'Tipo', 'Preço', 'Disponibilidade','Editar', 'Excluir'];
-  dataSource;
+/*   displayedColumns: string[] = ['Nome', 'Sabor', 'Tamanho', 'Tipo', 'Preço', 'Disponibilidade','Editar', 'Excluir'];
+  dataSource; */
   message;
   abrirForm = 0;
 
@@ -45,12 +47,14 @@ export class ListarSalgadoComponent implements OnInit {
     this.buscaSalgados();
   }
   buscaSalgados(){
-    let url = 'http://localhost:5000/api/v1/salgado/listarSalgado';
+    let url = Usuario.URL+'salgado/listarSalgado';
     this.remote.acessor(url, '').then((res: any) =>{
       console.log('resposta', res);
-      if(res.auth == true &&  res.resp && !res.message){   
-        this.dataSource = new MatTableDataSource(res.resp);
-        this.dataSource.paginator = this.paginator;
+      if(res.auth == true &&  res.resp && !res.message){  
+        this.salgados = res.resp;
+        
+/*         this.dataSource = new MatTableDataSource(res.resp);
+        this.dataSource.paginator = this.paginator; */
       }else{
         this.message = res.message;
       }
@@ -60,7 +64,7 @@ export class ListarSalgadoComponent implements OnInit {
     let salgado = {
       id: id,
     };
-    let url = 'http://localhost:5000/api/v1/salgado/buscarSalgado';
+    let url = Usuario.URL+'salgado/buscarSalgado';
     this.remote.acessor(url, salgado).then(async (res: any) =>{
       let dados = res.resp;
       if(res.resp){
@@ -77,7 +81,7 @@ export class ListarSalgadoComponent implements OnInit {
     })
   }
   editarSalgado(){
-    let url = 'http://localhost:5000/api/v1/salgado/editarSalgado';
+    let url = Usuario.URL+'salgado/editarSalgado';
     this.remote.acessor(url, this.dadosSalgadoform).then( async (res: any) =>{
       if(res.auth == true){
          this.alert(res.message);
@@ -109,7 +113,7 @@ export class ListarSalgadoComponent implements OnInit {
       cancelButtonText: 'não'
     }).then((result) => {  
       if (result.value) {  
-        let url = 'http://localhost:5000/api/v1/salgado/excluirSalgado';
+        let url = Usuario.URL+'salgado/excluirSalgado';
         this.remote.acessor(url, salgado).then(async (res: any) =>{
           if(res.auth == true){   
             this.alert(res.message);

@@ -1,0 +1,103 @@
+<div class="corpoLista" *ngIf="formCompra == false">
+    <mat-card>
+        <mat-card-title>
+            Salgados
+        </mat-card-title>
+        <mat-card-content *ngFor="let salgado of salgados">
+            <mat-card style="width: initial;">
+                <mat-card-title>
+                    {{salgado.nome}}
+                </mat-card-title>
+                <mat-card-content>
+                    <p>Sabor: {{salgado.sabor}}</p>
+                    <p>Preço: R${{salgado.preco}}</p>
+                    <p>Tamanho:                   
+                        <label *ngIf="salgado.tamanho == 1">
+                            Pequeno
+                        </label>
+                        <label *ngIf="salgado.tamanho == 2">
+                            Medio
+                        </label>
+                        <label *ngIf="salgado.tamanho == 3">
+                            Grande
+                        </label>
+                    </p>
+                    <p>Tipo: 
+                        <label *ngIf="salgado.tipo == 1">
+                            Assado
+                        </label>
+                        <label *ngIf="salgado.tipo == 2">
+                            Frito
+                        </label>
+                    </p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button (click)="adicionarItem(salgado.id)">
+                        <mat-icon aria-hidden="false" class="iconeCard">
+                            add_circle_outline
+                        </mat-icon>
+                    </button>
+                    <!-- <input style="width: 30px;" value="" mask="0000" [(ngModel)]="salgado.quantidade" name="quantidade"> -->
+                    <button mat-button (click)="removerItem(salgado.id)">
+                        <mat-icon aria-hidden="false" class="iconeCard">
+                            remove_circle_outline
+                        </mat-icon>
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+        </mat-card-content>
+        <mat-card-footer id="centralizaItens" style="margin-bottom: 0px;">
+        </mat-card-footer>
+    </mat-card>
+    <button class="buttonPedido" (click)="fazerPedido()">
+        <mat-icon aria-hidden="false" class="iconeCard">
+            add_shopping_cart
+        </mat-icon>
+    </button>
+</div>
+
+<div class="corpoLista" *ngIf="formCompra == true">
+    <mat-card>
+        <mat-card-title>
+            Finalizar pedido
+        </mat-card-title>
+        <mat-card-content>
+            <mat-grid-list [cols]="breakpoint" rowHeight="350px" (window:resize)="onResize($event)">
+                <mat-grid-tile>
+                    <form style="margin-right: 10px;">
+                        <mat-form-field>
+                            <input matInput  placeholder="Email Cliente" value="{{dadosPedido.email}}"  name="email" disabled>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput type="text"  placeholder="Valor Total " value="R$ {{dadosPedido.valorTotal}}"  name="preco" disabled>
+                        </mat-form-field>
+                        <mat-form-field >
+                            <mat-label>Escolha uma forma de pagamento</mat-label>
+                            <mat-select> 
+                                <mat-option (click)="escolheFormaPagamento('')">Selecione</mat-option>
+                                <mat-option *ngFor="let pagamento of formaPagamento" [value]="pagamento.formaPagamento" (click)="escolheFormaPagamento(pagamento.formaPagamento)">
+                                    {{pagamento.descricao}}
+                                </mat-option>
+                            </mat-select>  
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Escolha uma forma de entrega</mat-label>
+                            <mat-select> 
+                                <mat-option (click)="escolheFormaEntrega('')">Selecione</mat-option>
+                                <mat-option *ngFor="let entrega of formaEntrega" [value]="entrega.formaEntrega" (click)="escolheFormaEntrega(entrega.formaEntrega)">
+                                    {{entrega.descricao}}
+                                </mat-option>
+                            </mat-select>  
+                        </mat-form-field>
+                        <mat-card class="cardAlert" style="width: auto;" *ngIf="liberado == false">
+                            {{mensagem}} Caso queira fazer retirada da encomenda selecione retirada no local !
+                        </mat-card>  
+                    </form>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </mat-card-content>
+        <mat-card-footer id="centralizaItens" style="margin-bottom: 0px;">
+             <button mat-raised-button color="primary" [disabled]="!dadosPedido.formaPagamento || !dadosPedido.formaEntrega || !liberado" (click)="FinalizarPedido()">Finalizar pedido</button>
+        </mat-card-footer>
+    </mat-card>
+</div>

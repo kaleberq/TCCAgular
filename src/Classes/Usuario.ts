@@ -3,4 +3,5 @@ export class Usuario{
     static NOME:String='';
     static TOKEN:any=null;
     static EMAIL:any=null;
+    static URL = 'http://localhost:5000/api/v1/';
 }

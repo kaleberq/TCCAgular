@@ -24,7 +24,7 @@ export class AppComponent {
     //this.router.navigate(['/login']);
   }
   sair(){
-    let url = 'http://localhost:5000/api/v1/user/logout';
+    let url = Usuario.URL+'user/logout';
     let dadosLogout = {
       blackList: Usuario.TOKEN,
       email: Usuario.EMAIL
