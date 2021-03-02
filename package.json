@@ -27,6 +27,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@jaspero/ng-alerts": "^0.1.2",
     "angularx-social-login": "^3.5.4",
+    "chart.js": "^2.9.4",
     "ngx-mask": "^10.0.4",
     "ngx-scroll-event": "^2.0.2",
     "ngx-show-hide-password": "^2.3.0",
