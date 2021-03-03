@@ -1,0 +1,40 @@
+<div class="corpoLogin">
+    <mat-card>
+        <mat-card-title>
+        Login 
+        </mat-card-title>
+        <mat-card-content>
+            <form class="example-form">
+                <mat-form-field>
+                    <input matInput placeholder="Email" value="" [(ngModel)]="dadosLogin.email" name="email" maxlength="50" >
+                </mat-form-field>
+                <mat-form-field>
+                    <input id="mysecretpassword" type="password" placeholder="Senha" matInput showHideInput [(ngModel)]="dadosLogin.senha" name="password">
+                    <i matSuffix
+                      class="material-icons"
+                      showHideTrigger="mysecretpassword"
+                      [showHideStatus]="{ materialIcon: true, id: 'mysecretpassword' }" style="cursor: pointer;">
+                    </i>
+                  </mat-form-field>
+            </form>
+            <div id="centralizaItens">
+                <label class="cursorStyle" (click)="routeCreateUser()">Criar nova conta</label>
+            </div>
+            <div id="centralizaItens" style="margin-top: 5px;">
+                <label class="cursorStyle" (click)="esqueceuSenha()">Esqueci a senha</label>
+            </div>
+        </mat-card-content>
+        <mat-card-footer>
+            <div id="centralizaItens">
+                <button mat-raised-button color="primary" (click)="validarLogin()" [disabled]="!dadosLogin.email || !dadosLogin.senha">Entrar</button>
+            </div>
+            <div class="googleButton">
+                <img (click)="signInWithGoogle()" style="  cursor: pointer;" width="40px" alt="Angular Logo" src="../../assets/googleIcon.png" />
+            </div>
+        </mat-card-footer>
+    </mat-card>
+</div>
+
+
+
+

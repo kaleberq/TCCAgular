@@ -1,0 +1,28 @@
+mat-card{
+  height: 275px;
+  width:  300px;
+}
+.corpoLogin{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 97vh
+}
+::ng-deep {
+  .mat-form-field .mat-form-field-flex{
+    background-color: white; 
+  }
+}
+mat-form-field{
+  width: 100%;
+}
+#centralizaItens{
+  text-align: center;
+}
+.cursorStyle{
+  cursor: pointer;
+}
+.googleButton{
+  text-align: right; 
+  padding-right: 10px; 
+}

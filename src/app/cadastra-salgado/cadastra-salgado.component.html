@@ -1,0 +1,52 @@
+<div class="corpoCadastro">
+    <mat-card>
+        <mat-card-title>
+            Cadastro salgado
+        </mat-card-title>
+        <mat-card-content>
+            <mat-grid-list [cols]="breakpoint" rowHeight="350px" (window:resize)="onResize($event)">
+                <mat-grid-tile>
+                    <form style="margin-right: 10px;">
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="dadosSalgado.nome" placeholder="Nome" value=""  name="nome" type="text" maxlength="20">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="dadosSalgado.sabor" placeholder="Sabor" value=""  name="sabor">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput type="number" [(ngModel)]="dadosSalgado.preco" placeholder="Preço" value=""  name="preco">
+                        </mat-form-field>
+                        <mat-form-field >
+                            <mat-label>Tamanho</mat-label>
+                            <mat-select [(value)]="dadosSalgado.tamanho">
+                                <mat-option>Selecione</mat-option>
+                                <mat-option value="1">Pequeno</mat-option>
+                                <mat-option value="2">Médio</mat-option>
+                                <mat-option value="3">Grande</mat-option>
+                            </mat-select>  
+                        </mat-form-field>
+                        <mat-form-field >
+                            <mat-label>Tipo</mat-label>
+                            <mat-select [(value)]="dadosSalgado.tipo">
+                                <mat-option>Selecione</mat-option>
+                                <mat-option value="1">Frito</mat-option>
+                                <mat-option value="2">Assado</mat-option>
+                            </mat-select>  
+                        </mat-form-field>
+                        <mat-form-field >
+                            <mat-label>Disponibilidade</mat-label>
+                            <mat-select [(value)]="dadosSalgado.disponibilidade">
+                                <mat-option>Selecione</mat-option>
+                                <mat-option value="0">Indisponivel</mat-option>
+                                <mat-option value="1">Disponível</mat-option>
+                            </mat-select>  
+                        </mat-form-field>
+                    </form>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </mat-card-content>
+        <mat-card-footer id="centralizaItens" style="margin-bottom: 0px;">
+            <button mat-raised-button color="primary" [disabled]="!dadosSalgado.disponibilidade || !dadosSalgado.nome  || !dadosSalgado.sabor || !dadosSalgado.tamanho || !dadosSalgado.tipo || !dadosSalgado.preco" (click)="cadastrar()">Cadastrar</button>
+        </mat-card-footer>
+    </mat-card>
+</div>

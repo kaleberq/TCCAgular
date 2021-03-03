@@ -1,0 +1,39 @@
+mat-card{
+    height: auto;
+    width:  600px;
+  }
+  .corpoCadastro{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    margin-bottom: 30px;
+    margin-top: 30px;
+  }
+  ::ng-deep {
+    .mat-form-field .mat-form-field-flex{
+      background-color: white; 
+    }
+  }
+  mat-form-field{
+    width: 100%;
+  }
+  #centralizaItens{
+    text-align: center;
+  }
+  .cursorStyle{
+    cursor: pointer;
+  }
+.cardAlert{
+    color: #a94442;
+    background-color: #f2dede;
+    border: 1px solid #a94442;
+    padding: 9px 6px;
+    text-align: center;
+    margin-left: 20px;
+    margin-right: 20px;
+    width: auto;
+    margin-bottom: 18px;
+    margin-left: 0px;
+    margin-right: 0px;
+}

@@ -1,0 +1,126 @@
+<mat-grid-list [cols]="breakpoint" rowHeight="230px" (window:resize)="onResize($event)" *ngIf="usuario.TIPO == 1">
+    <mat-grid-tile>
+        <mat-card class="center cursorStyle" (click)="pagina('listar-salgado')">
+            <mat-icon aria-hidden="false" class="iconeCard">
+                list
+            </mat-icon>
+            <br>
+            <label>
+                Listar salgados cadastrados
+            </label>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile >
+        <mat-card  class="center cursorStyle" (click)="pagina('cadastra-salgado')">
+            <mat-icon aria-hidden="false" class="iconeCard">
+                playlist_add
+            </mat-icon>
+            <br>
+            <label>
+                Cadastrar Salgados
+            </label>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile> 
+        <mat-card class="center cursorStyle" (click)="pagina('novos-pedidos')">
+            <mat-icon aria-hidden="false" class="iconeCard">
+                new_releases
+            </mat-icon>
+            <br>
+            <label>
+                Novos Pedidos: {{novosPedidos}}
+            </label>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-card class="center cursorStyle" (click)="pagina('pedidos-para-fazer')">
+            <mat-icon aria-hidden="false" class="iconeCard">
+                restaurant_menu
+            </mat-icon>
+            <br>
+            <label>
+                Pedidos aceitos: {{pedidosAceitos}}
+            </label>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-card class="center cursorStyle" (click)="pagina('pedidos-finalizados')"> 
+            <mat-icon aria-hidden="false" class="iconeCard">
+                done
+            </mat-icon>
+            <br>
+            <label>
+                Pedidos Finalizados: {{pedidosFinalizados}}
+            </label>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-card class="center cursorStyle" (click)="pagina('relatorio-vendas-mensal')"> 
+            <mat-icon aria-hidden="false" class="iconeCard">
+                auto_graph
+            </mat-icon>
+            <br>
+            <label>
+                Relatorio de Pedidos do mês
+            </label>
+        </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>
+
+<mat-grid-list [cols]="breakpoint" rowHeight="230px" (window:resize)="onResize($event)" *ngIf="usuario.TIPO == 0">
+    <mat-grid-tile (click)="pagina('lista-salgado-cliente')">
+        <mat-card class="center cursorStyle">
+            <mat-icon aria-hidden="false" class="iconeCard">
+                list
+            </mat-icon>
+            <br>
+            <label>
+                Salgados
+            </label>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile (click)="pagina('meus-pedidos')">
+        <mat-card  class="center cursorStyle">
+            <mat-icon aria-hidden="false" class="iconeCard">
+                av_timer
+            </mat-icon>
+            <br>
+            <label>
+                Pedidos aguardando aprovação: {{novosPedidos}}
+            </label>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile (click)="pagina('pedidos-aprovados-cliente')">
+        <mat-card  class="center cursorStyle">
+            <mat-icon aria-hidden="false" class="iconeCard">
+                shopping_cart
+            </mat-icon>
+            <br>
+            <label>
+                Pedidos aprovados: {{pedidosAceitos}}
+            </label>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile (click)="pagina('pedidos-finalizados-cliente')">
+        <mat-card  class="center cursorStyle">
+            <mat-icon aria-hidden="false" class="iconeCard">
+                done
+            </mat-icon>
+            <br>
+            <label>
+                Pedidos finalizados: {{pedidosFinalizados}}
+            </label>
+        </mat-card>
+    </mat-grid-tile>
+<!--     <mat-grid-tile (click)="pagina('')">
+        <mat-card  class="center cursorStyle">
+            <mat-icon aria-hidden="false" class="iconeCard">
+                delivery_dining
+            </mat-icon>
+            <br>
+            <label>
+                Pedidos entregues
+            </label>
+        </mat-card>
+    </mat-grid-tile> -->
+</mat-grid-list>
