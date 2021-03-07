@@ -63,16 +63,40 @@ export class NovosPedidosComponent implements OnInit {
       encomendaAndamento: andamento,
       email: email
     }
-
-    let url = Usuario.URL+'encomendaInformacao/updateAndamentoEncomenda';
-    this.remote.acessor(url, obj).then((res: any) =>{
-      if(res.auth == true && res.message){  
-        this.alert(res.message);
-        this.ngOnInit();
-      }else{
-        this.alert(res.message);
-      }
-    })
+    if(andamento == 2){
+      Swal.fire({
+        /* title: text, */
+        width: 400,
+        text: 'Deseja realmente recusar este pedido?',
+        /* icon: 'warning', */
+        showCancelButton: true,
+        confirmButtonText: 'sim',
+        cancelButtonText: 'não'
+      }).then((result) => {  
+        if (result.value) {  
+          let url = Usuario.URL+'encomendaInformacao/updateAndamentoEncomenda';
+          this.remote.acessor(url, obj).then((res: any) =>{
+            if(res.auth == true && res.message){  
+              this.alert(res.message);
+              this.ngOnInit();
+            }else{
+              this.alert(res.message);
+            }
+          })
+        }  
+      })
+    }else{
+      let url = Usuario.URL+'encomendaInformacao/updateAndamentoEncomenda';
+      this.remote.acessor(url, obj).then((res: any) =>{
+        if(res.auth == true && res.message){  
+          this.alert(res.message);
+          this.ngOnInit();
+        }else{
+          this.alert(res.message);
+        }
+      })
+    }
+    
   }
   alert(text){
     Swal.fire({
