@@ -29,6 +29,7 @@ export class ListaSalgadoClienteComponent implements OnInit {
   endereco: boolean;
   mensagem: string;
   liberado: any;
+  message;
 
   constructor(private remote: RemoteService, private router: Router) { }
 
@@ -40,7 +41,14 @@ export class ListaSalgadoClienteComponent implements OnInit {
       for (let item in res.resp) {
         res.resp[item].quantidade = 0;
       }
-      this.salgados = res.resp;
+      if(res.auth == true &&  res.resp && !res.message){  
+        this.salgados = res.resp;
+        
+/*         this.dataSource = new MatTableDataSource(res.resp);
+        this.dataSource.paginator = this.paginator; */
+      }else{
+        this.message = res.message;
+      }
       console.log('resposta', res);
     })
   }
